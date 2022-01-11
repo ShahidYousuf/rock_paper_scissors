@@ -1,11 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% load static %}
+<html lang="en" class="h-100">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Rock, Paper and Scissors</title>
-</head>
-<body>
-{% block content %}
-{% endblock %}
-</body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href='{% static "base_view/css/bootstrap.min.css" %}' crossorigin="anonymous">
+    {% block extra_head_content %} {% endblock %}
+      <link rel="stylesheet" href='{% static "base_view/css/font-awesome.min.css" %}'>
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">Rock, Paper and Scissors</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+    </header>
+    <main class="flex-shrink-0 container-fluid">
+      {% block content %}
+      {% endblock %}
+    </main>
+    <footer class="footer mt-auto pb-3 border-dark bg-dark text-white">
+        <div class="container-fluid">
+        <div class="row text-center pt-4">
+          <div class="col-md-4">
+            <p class="mb-0 pb-0"><i class="fa fa-copyright"></i> Rock, Paper and Scissors | 2022</p>
+              <ul class="list-unstyled text-left">
+                  <li class=""><small>A simple fun game of Rock, Paper and Scissors.</small></li>
+              </ul>
+          </div>
+        </div>
+            <div class="row text-center pt-2">
+                <div class="col col-sm-12 col-md-12 small">
+                    <p class="p-0 m-0"><i class="fa fa-user text-success"></i> Designed and developed by:</p>
+                    <p class="p-0 m-0"><a href="mailto:shahidyousuf77@gmail.com">Shahid Yousuf</a></p>
+                    <p class="p-0 m-0">Software Engineer, Applied Informatics.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!--    <script src='{% static "baseview/js/jquery-3.5.1.min.js" %}' crossorigin="anonymous"></script>-->
+    <script src='{% static "base_view/js/bootstrap.bundle.min.js" %}' crossorigin="anonymous"></script>
+    <script src='{% static "baseview/js/custom.js" %}'></script>
+  </body>
 </html>

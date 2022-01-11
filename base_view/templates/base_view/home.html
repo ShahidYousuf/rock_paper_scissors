@@ -2,5 +2,9 @@
 {% block content %}
     <h1>
         {{ message }}
+        <form>
+            {% csrf_token %}
+            {{ register_form }}
+        </form>
     </h1>
 {% endblock %}
