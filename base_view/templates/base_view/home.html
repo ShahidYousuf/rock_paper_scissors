@@ -1,10 +1,20 @@
 {% extends 'base_view/base.html' %}
+{% load static %}
 {% block content %}
-    <h1>
-        {{ message }}
-        <form>
-            {% csrf_token %}
-            {{ register_form }}
-        </form>
-    </h1>
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-sm-8 col-md-8 py-5">
+                <div class="display-4"><span class="text-success">Rock</span>, <span class="text-warning">Paper</span> and <span class="text-primary">Scissors</span> Game.</div>
+                <div class="h2 fw-lighter py-3">A fun game to play with your partner bot <div>named PlayDroid</div> </div>
+                <div class="fw-light fs-4 py-5">
+                    <a class="text-decoration-none btn btn-lg btn-info" href="/">Learn More</a>
+                    <a class="text-decoration-none btn btn-lg btn-success mx-auto" href="/">Play <i class="fa fw-lighter fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <img class="img-fluid mx-auto float-end" src="{% static 'base_view/images/undraw_game_day_ucx9.svg'%}">
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
