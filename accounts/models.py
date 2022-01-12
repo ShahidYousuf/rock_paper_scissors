@@ -40,3 +40,6 @@ class User(AbstractUser):
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
+    def get_all_game_moves(self):
+        return self.moves.all()

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base_view',
     'accounts',
+    'playground',
 ]
 
 MIDDLEWARE = [

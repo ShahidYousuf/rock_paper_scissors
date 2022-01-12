@@ -1,0 +1,68 @@
+{% extends "base_view/base.html" %}
+{% block content %}
+<!-- <p>-->
+<!--        <i class="fa fa-hand-rock-o text-success" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-hand-paper-o text-warning" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-hand-scissors-o text-primary" aria-hidden="true"></i>-->
+<!--                        <i class="fa fa-hand-scissors-o fa-rotate-180 text-primary" aria-hidden="true"></i>-->
+
+
+<!--    </p>-->
+<div class="container">
+    <div class="display-5 text-center py-4">
+        Rock, Paper and Scissors
+    </div>
+    <div class="container-fluid mx-auto">
+        <div class="row justify-content-md-center">
+            <div class="col-md-3 bg-light py-4 shadow">
+                <div class="text-center">
+                    <div class="h4 fw-lighter">{{ player.get_full_name }}</div>
+                    <div></div>
+                    <form class="form py-4">
+                        {% csrf_token %}
+                        <input type="hidden" name="player_move_type" id="player_move_type" value="" />
+                        <input type="hidden" name="bot_move_type" id="bot_move_type" value="" />
+                        <i class="fa fa-hand-rock-o text-success fs-1 mx-2" aria-hidden="true"></i>
+                        <i class="fa fa-hand-paper-o text-warning fs-1 mx-2" aria-hidden="true"></i>
+                        <i class="fa fa-hand-scissors-o text-primary fs-1 mx-2" aria-hidden="true"></i>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 offset-md-1 bg-light py-4">
+               <div class="text-center">
+                    <div class="h4 fw-lighter">Score</div>
+                    <div></div>
+                    <div class="py-4">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <i class="fa fa-hand-rock-o text-success fs-1 mx-2" aria-hidden="true"></i>
+                                <span class="fs-1 fw-lighter">5</span>
+                            </div>
+                            <div class="col-md-2">
+                                <i class="fa fa-arrows-h fs-1 fw-lighter" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-5">
+                                <span class="fs-1 fw-lighter">3</span>
+                                <i class="fa fa-hand-paper-o text-warning fs-1 mx-2" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 offset-md-1 bg-light py-4 shadow">
+                <div class="text-center">
+                    <div class="h4 fw-lighter">{{ playdroid.get_full_name }}</div>
+                    <div></div>
+                    <div class="py-4">
+                         <i class="fa fa-hand-rock-o text-success fs-1 mx-2" aria-hidden="true"></i>
+                            <i class="fa fa-hand-paper-o text-warning fs-1 mx-2" aria-hidden="true"></i>
+                            <i class="fa fa-hand-scissors-o text-primary fs-1 mx-2" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
