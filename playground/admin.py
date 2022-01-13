@@ -15,7 +15,7 @@ class GameAdmin(admin.ModelAdmin):
 
 
 class MoveAdmin(admin.ModelAdmin):
-    list_display = ('id', 'player', 'move_type', 'game', 'result', 'created_on')
+    list_display = ('id', 'player', 'against', 'move_type', 'game', 'result', 'created_on')
 
 
 admin.site.register(GameLog, GameLogAdmin)

@@ -49,6 +49,7 @@ class Game(models.Model):
 
 class Move(models.Model):
     player = models.ForeignKey(User, related_name='moves', on_delete=models.CASCADE)
+    against = models.ForeignKey(User, related_name='bot_moves', on_delete=models.CASCADE)
     move_type = models.ForeignKey(MoveType, related_name='moves', on_delete=models.CASCADE)
     game = models.ForeignKey(Game, related_name='moves', on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)

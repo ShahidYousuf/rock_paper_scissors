@@ -1,4 +1,5 @@
 {% extends "base_view/base.html" %}
+{% load play_tags %}
 {% block content %}
 <!-- <p>-->
 <!--        <i class="fa fa-hand-rock-o text-success" aria-hidden="true"></i>-->
@@ -9,15 +10,22 @@
 
 <!--    </p>-->
 <div class="container">
-    <div class="display-5 text-center py-4">
-        Rock, Paper and Scissors
+    <div class="display-5 text-center py-5 mb-5">
+        <span class="text-success">Rock</span>, <span class="text-warning">Paper</span> and <span class="text-primary">Scissors</span>
     </div>
-    <div class="container-fluid mx-auto">
+    <div class="container-fluid mb-5 mx-auto">
         <div class="row justify-content-md-center">
             <div class="col-md-3 bg-light py-4 shadow">
                 <div class="text-center">
                     <div class="h4 fw-lighter">{{ player.get_full_name }}</div>
-                    <div></div>
+                    <div>
+                        {% get_player_win_count player playdroid as player_win_count %}
+                        {% get_player_loss_count player playdroid as player_loss_count %}
+                        {% get_player_draw_count player playdroid as player_draw_count %}
+                        <span class="fw-light text-success">Wins: <span id="player_win_count">{{ player_win_count }}</span></span>
+                        <span class="fw-light text-danger">Losses: <span id="player_loss_count">{{ player_loss_count }}</span></span>
+                        <span class="fw-light text-warning">Draws: <span id="player_draw_count">{{ player_draw_count }}</span></span>
+                    </div>
                     <form id="move_form" class="form py-4" method="POST" action="{% url 'playground' %}">
                         {% csrf_token %}
                         <input type="hidden" name="player_move_type" id="player_move_type" value="" />
@@ -52,7 +60,14 @@
             <div class="col-md-3 offset-md-1 bg-light py-4 shadow">
                 <div class="text-center">
                     <div class="h4 fw-lighter">{{ playdroid.get_full_name }}</div>
-                    <div></div>
+                    <div>
+                        {% get_bot_win_count playdroid player as bot_win_count %}
+                        {% get_bot_loss_count playdroid player as bot_loss_count %}
+                        {% get_bot_draw_count playdroid player as bot_draw_count %}
+                        <span class="fw-light text-success">Wins: <span id="bot_win_count">{{bot_win_count}}</span></span>
+                        <span class="fw-light text-danger">Losses: <span id="bot_loss_count">{{ bot_loss_count }}</span></span>
+                        <span class="fw-light text-warning">Draws: <span id="bot_draw_count">{{ bot_draw_count}}</span></span>
+                    </div>
                     <div class="py-4">
                         <i id="bot_hand_icon" class="fa fa-hand-rock-o text-success fs-1 mx-2" aria-hidden="true"></i>
                         <i id="bot_paper_icon" class="fa fa-hand-paper-o text-warning fs-1 mx-2" aria-hidden="true"></i>
@@ -63,6 +78,8 @@
         </div>
 
     </div>
-
+    <div class="container text-center py-4 mb-4">
+        <a href="{% url 'logout' %}" class="btn btn-danger btn-md">End Game</a>
+    </div>
 </div>
 {% endblock %}

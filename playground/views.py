@@ -37,14 +37,27 @@ class PlayGroundView(View):
         game = self._add_game(player, bot, game_log)
         p_move_type = MoveType.objects.get(name=player_move_type)
         b_move_type = MoveType.objects.get(name=bot_move_type)
-        player_move = self._add_move(player, p_move_type, game, result)
-        bot_move = self._add_move(bot, b_move_type, game, bot_result)
+        player_move = self._add_move(player, bot, p_move_type, game, result)
+        bot_move = self._add_move(bot, player, b_move_type, game, bot_result)
+        player_game_details = {
+            'win_count': player.get_win_count(bot),
+            'loss_count': player.get_loss_count(bot),
+            'draw_count': player.get_draw_count(bot),
+        }
+        bot_game_details = {
+            'win_count': bot.get_win_count(player),
+            'loss_count': bot.get_loss_count(player),
+            'draw_count': bot.get_draw_count(player),
+        }
+
         context = {
             'success': True,
             'player_move_type': player_move_type,
             'bot_move_type': bot_move_type,
             'player_result': player_move.result,
             'bot_result': bot_move.result,
+            'player_game_details': player_game_details,
+            'bot_game_details': bot_game_details
         }
         return JsonResponse(context)
 
@@ -65,8 +78,8 @@ class PlayGroundView(View):
         game.save()
         return game
 
-    def _add_move(self, player, move_type, game, result):
-        move = Move(player=player, move_type=move_type, game=game)
+    def _add_move(self, player, against, move_type, game, result):
+        move = Move(player=player, against=against, move_type=move_type, game=game)
         move.result = result
         move.save()
         return move

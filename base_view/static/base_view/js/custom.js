@@ -54,6 +54,15 @@ const bot_move_type_input = document.getElementById('bot_move_type');
 
 const move_form = document.getElementById('move_form');
 
+const player_win_container = document.getElementById('player_win_count');
+const player_loss_container = document.getElementById('player_loss_count');
+const player_draw_container = document.getElementById('player_draw_count');
+
+const bot_win_container = document.getElementById('bot_win_count');
+const bot_loss_container = document.getElementById('bot_loss_count');
+const bot_draw_container = document.getElementById('bot_draw_count');
+
+
 icon_mapper = {
     rock : rock_icon,
     paper : paper_icon,
@@ -92,8 +101,19 @@ function sendGameMove() {
     fetch(url, config)
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         set_result_container(player_result_container, data.player_result);
         set_result_container(bot_result_container, data.bot_result)
+        let player_details = data.player_game_details;
+        let bot_details = data.bot_game_details;
+        set_win_count(player_win_container, player_details.win_count);
+        set_loss_count(player_loss_container, player_details.loss_count);
+        set_draw_count(player_draw_container, player_details.draw_count);
+
+        set_win_count(bot_win_container, bot_details.win_count);
+        set_loss_count(bot_loss_container, bot_details.loss_count);
+        set_draw_count(bot_draw_container, bot_details.draw_count);
+
     })
     .catch(error => {
         console.log("Error", error)
@@ -110,4 +130,19 @@ function set_result_container(container, result) {
     container.innerHTML = "";
     let html = result_mapper[result]
     container.innerHTML = html;
+}
+
+function set_win_count(container, count) {
+    container.innerHTML = ""
+    container.innerHTML = count;
+}
+
+function set_loss_count(container, count) {
+    container.innerHTML = "";
+    container.innerHTML = count;
+}
+
+function set_draw_count(container, count) {
+    container.innerHTML = "";
+    container.innerHTML = count;
 }

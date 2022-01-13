@@ -47,6 +47,9 @@ class HomeView(View):
         username = full_name.replace(" ", "_") + str(int(datetime.datetime.now().timestamp()))
         email = username + "@localhost.com"
         password = full_name + "123"
+        user = User.objects.filter(first_name=first_name, last_name=last_name)
+        if user.exists():
+            return user.first()
         user = User(first_name=first_name, last_name=last_name)
         user.email = email
         user.set_password(password)

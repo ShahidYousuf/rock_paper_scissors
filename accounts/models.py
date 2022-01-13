@@ -43,3 +43,13 @@ class User(AbstractUser):
 
     def get_all_game_moves(self):
         return self.moves.all()
+
+    def get_win_count(self, against):
+        return self.moves.filter(result='win', against=against).count()
+
+    def get_loss_count(self, against):
+        return self.moves.filter(result='loss', against=against).count()
+
+    def get_draw_count(self, against):
+        return self.moves.filter(result='draw', against=against).count()
+
