@@ -53,6 +53,7 @@ class Move(models.Model):
     game = models.ForeignKey(Game, related_name='moves', on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     modified_on = models.DateTimeField(auto_now=True, null=True, blank=True)
+    result = models.CharField(null=True, blank=True, default='draw', max_length=30)
 
 
 class Shape:
